@@ -1,15 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biographie - Jason Ololo</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- Ajoute ceci dans le <head> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
+<!--
   <header>
     <nav>
       <a href="index.html" class="logo">Jason Ololo</a>
@@ -22,13 +23,21 @@
       </ul>
     </nav>
   </header>
+-->
 
   <section class="biographie-section">
-    <img src="img/photo_de_profil.png" alt="Photo" class="biographie-photo">
-    <h1>Biographie</h1>
-    <p>Je suis un leader engagé pour éveiller la jeunesse africaine a son potentiel a travers le leadership president : Awakening_Generation_academia(IG) Founder: @gratful_foundation_lecteur/juriste/philanthrop/Ecrivain Dieu dans un petit corps.</p>
+    <h1>Biographie de {{ auteur.nom }}</h1>
+    <img src="{{ auteur.photo.url }}" alt="Photo" class="biographie-photo">
+    <p><strong>Biographie : </strong></p>
+    <p>{{ auteur.biographie }}</p>
     <div class="biographie-citation">"Une citation marquante."</div>
   </section>
+
+  {% if auteur.nom == "Jason Ololo" %}
+    <div class="admin-section">
+      <a href="{% url 'modifier_biographie' %}" class="btn btn-primary">Modifier la biographie</a>
+    </div>
+  {% endif %}
 
   <footer>
     <p>&copy; 2025 Jason Ololo. Tous droits réservés.</p>
@@ -38,6 +47,6 @@
       <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
-  <script src="js/script.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

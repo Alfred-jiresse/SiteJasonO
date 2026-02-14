@@ -1,19 +1,35 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des vidéos</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <h1>Liste des vidéos</h1>
-    {% for video in videos %}
-        <div>
-            <h2>{{ video.titre }}</h2>
-            <p>{{ video.description }}</p>
-            <p>Date de publication : {{ video.date_publication }}</p>
-            <video src="{{ video.url }}" controls></video>
+    <section class="videos-section">
+        <h1>Vidéos de Jason Ololo</h1>
+        <div class="videos-grid">
+        {% for video in videos %}
+            <div class="video-card">
+                <h2>{{ video.titre }}</h2>
+                <p>{{ video.description }}</p>
+                <p>Date de publication : {{ video.date_publication }}</p>
+                <video src="{{ video.url }}" controls></video>
+            </div>
+        {% endfor %}
         </div>
-    {% endfor %}
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Jason Ololo. Tous droits réservés.</p>
+        <div class="social-icons">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
 </body>
 </html>

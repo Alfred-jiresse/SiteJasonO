@@ -1,15 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Livres - Jason Ololo</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- Ajoute ceci dans le <head> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
+<!--
   <header>
     <nav>
       <a href="index.html" class="logo">Jason Ololo</a>
@@ -22,7 +23,23 @@
       </ul>
     </nav>
   </header>
+-->
+  <section class="livres-section">
+    <h1>Ajouter un livre</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Ajouter</button>
+    </form>
 
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    <a href="{% url 'liste_livre' %}">Voir tous les livres</a>
+  </section>
+  <!--
   <section class="livres-section">
   <h1>Bibliothèque de Jason Ololo</h1>
   <div class="livres-grid">
@@ -37,9 +54,10 @@
       <p>Résumé ou description courte du livre.</p>
     </div>
     <!-- Ajoute d'autres livres ici -->
+     <!--
   </div>
   </section>
-
+-->
   <footer>
     <p>&copy; 2025 Jason Ololo. Tous droits réservés.</p>
      <div class="social-icons">
@@ -48,6 +66,6 @@
       <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
-  <script src="js/script.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

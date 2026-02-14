@@ -16,9 +16,9 @@
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="biographie.html">Biographie</a></li>
-        <li><a href="livres.html">Livres</a></li>
-        <li><a href="videos.html">Vidéos</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="{% url 'liste_livre' %}">Livres</a></li>
+        <li><a href="{% url 'liste_video' %}">Vidéos</a></li>
+        <li><a href="{% url 'contact' %}" class="active">Contact</a></li>
       </ul>
     </nav>
   </header>

@@ -17,4 +17,4 @@ def add_video(request):
     else:
         form = VideoForm()
     
-    return render(request, 'video.html', {'form': form})
+    return render(request, 'videos.html', {'form': form})

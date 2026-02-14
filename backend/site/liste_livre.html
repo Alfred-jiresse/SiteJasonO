@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Livres</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <section class="livres-section">
+        <h1>Bibliothèque de Jason Ololo</h1>
+        <div class="livres-grid">
+        {% for livre in livres %}
+            <div class="livre-card">
+                <h2>{{ livre.titre }}</h2>
+                <p>Auteur : {{ livre.auteur }}</p>
+                <p>{{ livre.description }}</p>
+                <img src="{{ livre.couverture.url }}" alt="Couverture de {{ livre.titre }}">
+                <p>Date de publication : {{ livre.date_publication }}</p>
+                <p>ISBN : {{ livre.isbn }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
