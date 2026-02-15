@@ -10,20 +10,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<!--
   <header>
     <nav>
       <a href="index.html" class="logo">Jason Ololo</a>
       <ul>
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="biographie.html" class="active">Biographie</a></li>
-        <li><a href="livres.html">Livres</a></li>
-        <li><a href="videos.html">Vidéos</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="{% url 'biographie' %}" class="active">Biographie</a></li>
+        <li><a href="{% url 'liste_livre' %}">Livres</a></li>
+        <li><a href="{% url 'liste_video' %}">Vidéos</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Connexion</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
--->
 
   <section class="biographie-section">
     <h1>Biographie de {{ auteur.nom }}</h1>
@@ -33,7 +36,7 @@
     <div class="biographie-citation">"Une citation marquante."</div>
   </section>
 
-  {% if auteur.nom == "Jason Ololo" %}
+  {% if user.is_authenticated and user.groups.filter(name='Auteur').exists %}
     <div class="admin-section">
       <a href="{% url 'modifier_biographie' %}" class="btn btn-primary">Modifier la biographie</a>
     </div>

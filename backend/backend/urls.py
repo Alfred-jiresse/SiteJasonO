@@ -19,14 +19,20 @@ from django.urls import path
 from contact.views import contact_view
 from video.views import video_list, add_video
 from livre.views import liste_livre, add_livre
-from biographie.views import Auteur_view
+from biographie.views import auteur_view, biographie_view
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('biographie/modifier/', Auteur_view, name='modifier_biographie'),
+    path('biographie/', biographie_view, name='biographie'),
+    path('biographie/modifier/', auteur_view, name='modifier_biographie'),
     path('videos/', video_list, name='liste_video'),
     path('videos/ajouter/', add_video, name='ajouter_video'),
     path('livres/', liste_livre, name='liste_livre'),
     path('livres/ajouter/', add_livre, name='ajouter_livre'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('contact/', contact_view, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

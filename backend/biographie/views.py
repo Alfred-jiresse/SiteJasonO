@@ -13,4 +13,8 @@ def auteur_view(request):
     else:
         form = AuteurForm(instance=auteurs)
 
-    return render(request, 'biographie.html', {'form': form, 'auteur': auteurs})
+    return render(request, 'auteur.html', {'form': form, 'auteur': auteurs})
+
+def biographie_view(request):
+    auteur = Auteur.objects.first()  # Récupère le premier auteur de la base de données
+    return render(request, 'biographie.html', {'auteur': auteur})

@@ -19,6 +19,11 @@
         <li><a href="{% url 'liste_livre' %}">Livres</a></li>
         <li><a href="{% url 'liste_video' %}">Vidéos</a></li>
         <li><a href="{% url 'contact' %}" class="active">Contact</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Connexion</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>

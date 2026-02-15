@@ -2,11 +2,16 @@ from django.shortcuts import render
 from .models import Video
 from .forms import VideoForm
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
+
+def is_auteur(user):
+    return user.is_authenticated and user.groups.filter(name='Auteur').exists()
 
 def video_list(request):
     videos = Video.objects.all().order_by('-date_publication')
     return render(request, 'liste_video.html', {'videos': videos})
 
+@user_passes_test(is_auteur)
 def add_video(request):
     if request.method == 'POST':
         form = VideoForm(request.POST)

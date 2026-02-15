@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Jason Ololo</a>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="{% url 'biographie' %}">Biographie</a></li>
+                <li><a href="{% url 'liste_livre' %}">Livres</a></li>
+                <li><a href="{% url 'liste_video' %}" class="active">Vidéos</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Connexion</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
     <section class="videos-section">
         <h1>Vidéos de Jason Ololo</h1>
         <div class="videos-grid">
@@ -20,6 +37,22 @@
                 <video src="{{ video.url }}" controls></video>
             </div>
         {% endfor %}
+        </div>
+
+        {% if user.is_authenticated and user.groups.filter(name='Auteur').exists %}
+            <a href="{% url 'ajouter_video' %}">Ajouter une vidéo</a>
+        {% endif %}
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="videos-links">
+            <h3>Voir plus de vidéos :</h3>
+            <a href="https://www.youtube.com/@jasonololo" target="_blank">Chaîne YouTube</a>
+            <a href="https://www.instagram.com/jasonololo" target="_blank">Instagram</a>
         </div>
     </section>
 
