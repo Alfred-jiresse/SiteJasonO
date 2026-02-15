@@ -8,8 +8,13 @@ def is_auteur(user):
     return user.is_authenticated and user.groups.filter(name='Auteur').exists()
 
 def video_list(request):
+    is_auteur = request.user.is_authenticated and request.user.groups.filter(name='Auteur').exists()
     videos = Video.objects.all().order_by('-date_publication')
-    return render(request, 'liste_video.html', {'videos': videos})
+    context = {
+        'videos': videos,
+        'is_auteur': is_auteur,
+    }
+    return render(request, 'liste_video.html', context)
 
 @user_passes_test(is_auteur)
 def add_video(request):

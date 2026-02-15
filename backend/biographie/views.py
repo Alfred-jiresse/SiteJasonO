@@ -16,5 +16,14 @@ def auteur_view(request):
     return render(request, 'auteur.html', {'form': form, 'auteur': auteurs})
 
 def biographie_view(request):
+    is_auteur = request.user.is_authenticated and request.user.groups.filter(name='Auteur').exists()
+    
     auteur = Auteur.objects.first()  # Récupère le premier auteur de la base de données
-    return render(request, 'biographie.html', {'auteur': auteur})
+    context = {
+        'auteur': auteur,
+        'is_auteur': is_auteur,
+    }
+    return render(request, 'biographie.html', context)
+
+def accueil_view(request):
+    return render(request, 'index.html')

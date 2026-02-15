@@ -8,8 +8,13 @@ def is_auteur(user):
     return user.is_authenticated and user.groups.filter(name='Auteur').exists()
 
 def liste_livre(request):
+    is_auteur = request.user.is_authenticated and request.user.groups.filter(name='Auteur').exists()
     livres = Livre.objects.all().order_by('isbn')
-    return render(request, 'liste_livre.html', {'livres': livres})
+    context = {
+        'livres': livres,
+        'is_auteur': is_auteur,
+    }
+    return render(request, 'liste_livre.html', context)
 
 @user_passes_test(is_auteur)
 def add_livre(request):

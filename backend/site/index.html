@@ -1,24 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
   <!-- HEADER -->
   <header>
-    <nav>
-      <a href="index.html" class="logo">Jason Ololo</a>
-      <ul>
-        <li><a href="index.html" class="active">Accueil</a></li>
-        <li><a href="biographie.html">Biographie</a></li>
-        <li><a href="livres.html">Livres</a></li>
-        <li><a href="videos.html">Vidéos</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <nav>
+            <a href="{% url 'accueil' %}" class="logo">Jason Ololo</a>
+            <ul>
+            <li><a href="{% url 'accueil' %}" class="active">Accueil</a></li>
+            <li><a href="{% url 'biographie' %}">Biographie</a></li>
+            <li><a href="{% url 'liste_livre' %}">Livres</a></li>
+            <li><a href="{% url 'liste_video' %}">Vidéos</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit">Se déconnecter</button>
+                </form>
+            {% else %}
+                <li>
+                    <a href="{% url 'login' %}" class="nav-login-link" aria-label="Se connecter">
+                        <i class="fa-solid fa-user small-login-icon" aria-hidden="true"></i>
+                    </a>
+                </li>
+            {% endif %}
       </ul>
     </nav>
   </header>
@@ -28,10 +41,10 @@
     <div class="presentation">
       <h1>Jason Ololo</h1>
       <p>"Inspirer, enseigner, transformer."</p>
-      <a href="biographie.html" class="btn">Découvrir son parcours</a>
+      <a href="{% url 'biographie' %}" class="btn">Découvrir son parcours</a>
     </div>
     <div class="hero-img">
-      <img src="img/photo_de_profil.png" alt="Photo de profil">
+      <img src="{% static 'img/photo_de_profil.png' %}" alt="Photo de profil">
     </div>
   </section>
 
@@ -76,7 +89,7 @@
       <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
-  <script src="js/script.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

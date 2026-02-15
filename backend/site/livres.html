@@ -12,9 +12,9 @@
 <body>
   <header>
     <nav>
-      <a href="index.html" class="logo">Jason Ololo</a>
+      <a href="{% url 'accueil' %}" class="logo">Jason Ololo</a>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
+        <li><a href="{% url 'accueil' %}">Accueil</a></li>
         <li><a href="{% url 'biographie' %}">Biographie</a></li>
         <li><a href="{% url 'liste_livre' %}">Livres</a></li>
         <li><a href="{% url 'ajouter_livre' %}" class="active">Ajouter un livre</a></li>
@@ -22,9 +22,16 @@
         <li><a href="{% url 'ajouter_video' %}">Ajouter une vidéo</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
         {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+          <form method="post" action="{% url 'logout' %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit">Se déconnecter</button>
+          </form>
         {% else %}
-          <li><a href="{% url 'login' %}">Connexion</a></li>
+          <li>
+            <a href="{% url 'login' %}" class="nav-login-link" aria-label="Se connecter">
+              <i class="fa-solid fa-user small-login-icon" aria-hidden="true"></i>
+            </a>
+          </li>
         {% endif %}
       </ul>
     </nav>

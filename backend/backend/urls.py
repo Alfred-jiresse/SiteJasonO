@@ -19,13 +19,14 @@ from django.urls import path
 from contact.views import contact_view
 from video.views import video_list, add_video
 from livre.views import liste_livre, add_livre
-from biographie.views import auteur_view, biographie_view
+from biographie.views import auteur_view, biographie_view, accueil_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', accueil_view, name='accueil'),
     path('biographie/', biographie_view, name='biographie'),
     path('biographie/modifier/', auteur_view, name='modifier_biographie'),
     path('videos/', video_list, name='liste_video'),

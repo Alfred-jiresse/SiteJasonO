@@ -57,6 +57,20 @@ nav ul li a {
   transition: color 0.3s ease;
 }
 
+nav ul li img {
+  /* Ne pas forcer une taille ici (empêchait l'avatar d'être redimensionné)
+     Laisser la taille par défaut ou gérer via une classe spécifique .small-avatar */
+  width: auto;
+  height: auto;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+nav ul li img:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
 nav ul li a:hover,
 nav ul li a.active {
   color: var(--orange);
@@ -501,4 +515,27 @@ footer p {
     order: 1;
     margin-bottom: 2rem;
   }
+}
+
+/* Petite icône circulaire dans la navigation (lien de connexion) */
+.small-avatar {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--orange);
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.small-avatar:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* Règle plus spécifique pour s'assurer que l'avatar de navigation reste petit */
+nav ul li a img.small-avatar {
+  width: 18px !important;
+  height: 18px !important;
 }
