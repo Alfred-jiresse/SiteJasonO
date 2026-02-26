@@ -42,10 +42,10 @@
                 <p>{{ video.description }}</p>
                 <p>Date de publication : {{ video.date_publication }}</p>
                 {% if video.url %}
-                    <video src="{{ video.url }}" controls></video>
+                    <iframe src="{{ video.url }}" frameborder="0" allowfullscreen></iframe>
                 {% endif %}
                 {% if video.fichier %}
-                    <p><a href="{{ video.fichier.url }}" target="_blank">Télécharger la vidéo</a></p>
+                    <video src="{{ video.fichier.url }}" controls></video>
                 {% endif %}
             </div>
         {% endfor %}
