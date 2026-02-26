@@ -45,7 +45,7 @@
                 <p>Date de publication : {{ livre.date_publication }}</p>
                 <p>ISBN : {{ livre.isbn }}</p>
                 <p>Prix : {{ livre.prix }} {{ livre.devise }}</p>
-                <a href="{{ livre.pdf.url }}" target="_blank">Télécharger le PDF</a>
+                <a href="{{ livre.pdf.url }}" target="_blank" download>Télécharger le PDF</a>
             </div>
         {% endfor %}
         </div>
