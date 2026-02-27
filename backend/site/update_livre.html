@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier un livre</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 </head>
-<body>
-    <h1>Modifier le livre "{{ livre.titre }}"</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Modifier</button>
-    </form>
+<body class="bg-gray-800">
+    <section class="bg-gray-900">
+        <h1 class="text-white">Modifier le livre "{{ livre.titre }}"</h1>
+        <form method="post" enctype="multipart/form-data" class="bg-black text-white">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Modifier</button>
+        </form>
+    </section>
 </body>
 </html>
