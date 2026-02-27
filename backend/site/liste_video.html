@@ -47,6 +47,9 @@
                 {% if video.fichier %}
                     <video src="{{ video.fichier.url }}" controls></video>
                 {% endif %}
+                {% if is_auteur %}
+                    <a href="{% url 'supprimer_video' video.id %}" class="delete-link">Supprimer</a>
+                {% endif %}
             </div>
         {% endfor %}
         </div>

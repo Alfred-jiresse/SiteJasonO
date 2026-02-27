@@ -29,3 +29,10 @@ def add_video(request):
     
     return render(request, 'videos.html', {'form': form})
 
+@user_passes_test(is_auteur)
+def delete_video(request, video_id):
+    video = Video.objects.get(id=video_id)
+    if request.method == 'POST':
+        video.delete()
+        return redirect('liste_video')
+    return render(request, 'confirm_delete_video.html', {'video': video})

@@ -47,7 +47,10 @@
                 <p>Prix : {{ livre.prix }} {{ livre.devise }}</p>
                 {% if livre.fichier %}
                     <a href="{{ livre.fichier.url }}" download>Télécharger le PDF</a>    
-                {% endif %} 
+                {% endif %}
+                {% if is_auteur %}
+                    <a href="{% url 'supprimer_livre' livre.id %}" class="delete-link">Supprimer</a>
+                {% endif %}
             </div>
         {% endfor %}
         </div>

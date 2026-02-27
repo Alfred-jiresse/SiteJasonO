@@ -28,3 +28,11 @@ def add_livre(request):
         form = LivreForm()
     
     return render(request, 'livres.html', {'form': form})
+
+@user_passes_test(is_auteur)
+def delete_livre(request, livre_id):
+    livre = Livre.objects.get(id=livre_id)
+    if request.method == 'POST':
+        livre.delete()
+        return redirect('liste_livre')
+    return render(request, 'confirm_delete.html', {'livre': livre})

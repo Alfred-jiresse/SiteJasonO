@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmer la suppression de la vidéo</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="videos-section">
+        <h2>Confirmer la suppression de la vidéo</h2>
+        <p>Êtes-vous sûr de vouloir supprimer la vidéo "{{ video.titre }}" ?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Supprimer</button>
+            <a href="{% url 'liste_video' %}">Annuler</a>
+        </form>
+    </section>
+</body>
+</html>
