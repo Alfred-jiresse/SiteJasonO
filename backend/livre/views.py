@@ -36,3 +36,17 @@ def delete_livre(request, livre_id):
         livre.delete()
         return redirect('liste_livre')
     return render(request, 'confirm_delete.html', {'livre': livre})
+
+@user_passes_test(is_auteur)
+def update_livre(request, livre_id):
+    livre = Livre.objects.get(id=livre_id)
+    if request.method == 'POST':
+        form = LivreForm(request.POST, request.FILES, instance=livre)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Le livre a été mis à jour avec succès !")
+            return redirect('liste_livre')
+    else:
+        form = LivreForm(instance=livre)
+    
+    return render(request, 'update_livre.html', {'form': form, 'livre': livre})

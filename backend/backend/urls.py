@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from contact.views import contact_view
 from video.views import video_list, add_video, delete_video
-from livre.views import liste_livre, add_livre, delete_livre
+from livre.views import liste_livre, add_livre, delete_livre, update_livre
 from biographie.views import auteur_view, biographie_view, accueil_view
 from django.conf import settings
 from django.conf.urls.static import static
@@ -35,6 +35,7 @@ urlpatterns = [
     path('livres/', liste_livre, name='liste_livre'),
     path('livres/ajouter/', add_livre, name='ajouter_livre'),
     path('livres/supprimer/<int:livre_id>/', delete_livre, name='supprimer_livre'),
+    path('livres/modifier/<int:livre_id>/', update_livre, name='modifier_livre'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('contact/', contact_view, name='contact'),

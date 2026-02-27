@@ -53,6 +53,7 @@
                 {% endif %}
                 {% if is_auteur %}
                     <a href="{% url 'supprimer_livre' livre.id %}" class="delete-link">Supprimer</a>
+                    <a href="{% url 'modifier_livre' livre.id %}" class="edit-link">Modifier</a>
                 {% endif %}
             </div>
         {% endfor %}
