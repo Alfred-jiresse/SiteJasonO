@@ -4,6 +4,7 @@
   --vert-fonce: #1C4C43;
   --noir: #0F0F0F;
   --blanc: #F9F9F9;
+  --doree: #FFD700;
 }
 
 /* --- Reset et base --- */
@@ -391,7 +392,7 @@ footer p {
 }
 
 .videos-links a:hover {
-  background-color: var(--vert-fonce);
+  background-color: var(--doree);
 }
 
 /* --- Contact --- */
@@ -515,27 +516,4 @@ footer p {
     order: 1;
     margin-bottom: 2rem;
   }
-}
-
-/* Petite icône circulaire dans la navigation (lien de connexion) */
-.small-avatar {
-  width: 18px;
-  height: 18px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid var(--orange);
-  display: inline-block;
-  vertical-align: middle;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
-}
-.small-avatar:hover {
-  transform: scale(1.15);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-}
-
-/* Règle plus spécifique pour s'assurer que l'avatar de navigation reste petit */
-nav ul li a img.small-avatar {
-  width: 18px !important;
-  height: 18px !important;
 }
